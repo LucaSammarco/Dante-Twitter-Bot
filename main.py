@@ -52,11 +52,16 @@ tweet_text = f"{cantica_nome}\n{canto_titolo}\n\n{verses_text}"
 cursor.close()
 db.close()
 
-# Credenziali Twitter prese dai secrets di GitHub Actions
+# Recupera le credenziali Twitter dagli environment variables (se configurato correttamente in GitHub Actions)
 api_key = os.getenv("API_KEY")
 api_secret = os.getenv("API_SECRET")
 access_token = os.getenv("ACCESS_TOKEN")
 access_secret = os.getenv("ACCESS_SECRET")
+
+# Verifica che tutte le credenziali siano state trovate
+if not all([api_key, api_secret, access_token, access_secret]):
+    print("Errore: credenziali Twitter non trovate nelle variabili d'ambiente!")
+    exit()
 
 # Crea il client Tweepy per interagire con l'API Twitter v2
 client = tweepy.Client(bearer_token=None,
