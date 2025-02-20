@@ -2,26 +2,21 @@ name: Twitta il massimo possibile nelle ore giornaliere
 
 on:
   schedule:
-    - cron: '0 6-21 * * *'  # Every hour from 8:00 to 23:00 Rome time (UTC+2)
-    
-  workflow_dispatch:  # Permette di avviare manualmente il workflow
+    - cron: "*/60 7-22 * * *" # Ogni 60 minuti dalle 8:00 alle 23:00 CET (UTC+1)
+  workflow_dispatch:
 
 jobs:
   tweet:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: "3.10"
-
       - name: Install dependencies
         run: pip install -r requirements.txt
-
       - name: Esegui lo script Python
         env:
           API_KEY: ${{ secrets.API_KEY }}
