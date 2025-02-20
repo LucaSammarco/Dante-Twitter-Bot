@@ -2,7 +2,7 @@ name: Twitta il massimo possibile nelle ore giornaliere
 
 on:
   schedule:
-    - cron: '*/19 8-23 * * *'  # Ogni 19 minuti dalle 8:00 alle 23:00
+    - cron: '59 8-23 * * *'  # Ogni 19 minuti dalle 8:00 alle 23:00
     
   workflow_dispatch:  # Permette di avviare manualmente il workflow
 
